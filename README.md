@@ -1,5 +1,7 @@
 Real Player 'external::Import()' Arbitrary file download, Directory Traversal Vulnerabilities leads to Remote Code Execution
 
+video demo: https://youtu.be/CONlijEgDLc
+
 Real Player uses Microsoft Internet Explorer functionality and exposes properties and methods through a special mean which is application specific:
 
 The 'external' object and it exposes several custom methods and properties.
@@ -12,6 +14,8 @@ until reboot (true when file is planted in 'startup' folder).
 
 The attacker needs to host the files to be copied/downloaded in an SMB or WebDav share.
 The directory 'appdata' must be placed in the share´s root.
+
+Also a DOS condition in 'external.PreloadURL()' helps so that the files are not deleted by Real Player
 
 The PoC will drop 'shdoclc.dll' (has simple code to run 'cmd.exe' at 'DllMain()' for demonstration purposes)  to the user´s 'windowsapps' folder and 'write.exe' to 'startup' folder, so it works universally (any Windows version from at least XP up to 11)
 
